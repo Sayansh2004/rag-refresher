@@ -1,0 +1,46 @@
+
+1. Introduction
+---------------
+
+OpenAI is an artificial intelligence research and deployment organization
+focused on creating advanced AI systems that are safe, useful, and beneficial
+to humanity.
+
+Its mission is simple but powerful:
+
+"Ensure that artificial general intelligence (AGI) benefits all of humanity."
+
+
+2. What is Artificial Intelligence?
+-----------------------------------
+
+Artificial Intelligence (AI) refers to systems designed to perform tasks
+that typically require human intelligence. These tasks include:
+
+- Understanding language
+- Recognizing images
+- Making decisions
+- Solving problems
+- Generating text, code, and media
+
+Modern AI systems are powered by machine learning, especially deep learning,
+where models learn patterns from massive datasets.
+
+
+3. Large Language Models (LLMs)
+-------------------------------
+
+One of the most significant breakthroughs in modern AI is the development
+of Large Language Models (LLMs).
+
+An LLM is a neural network trained on enormous amounts of text data to:
+
+- Predict the next word in a sentence
+- Understand context
+- Generate human-like responses
+- Write code
+- Summarize documents
+- Translate languages
+
+These models are built using the Transformer architecture, which enables
+them to understand long-range dependencies in text.
