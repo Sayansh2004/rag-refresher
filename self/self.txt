@@ -1,0 +1,21 @@
+
+
+Sayansh likes to experiment with LangChain, RAG, and vector databases.
+Sometimes the concepts feel confusing at first, but with practice they become clear.
+History-aware retrieval helps the model understand what "it" or "that" refers to in follow-up questions.
+
+In a distant city, a developer built a chatbot that remembered long conversations.
+The chatbot used embeddings to turn text into vectors, and a vector store to quickly find similar chunks.
+Whenever the user asked a question, the system retrieved the most relevant pieces of text and used them as context.
+
+On rainy evenings, the developer sipped tea and refactored the code.
+They replaced simple keyword search with semantic search.
+Slowly, the answers became more accurate, and users started trusting the assistant.
+
+You can ask questions like:
+- What does the developer like to drink?
+- What technologies was the developer using?
+- What problem did history-aware retrieval solve?
+
+Feel free to modify or extend this file with your own stories and notes.
+It exists only to give you some text to embed, index, and query while you are learning.
