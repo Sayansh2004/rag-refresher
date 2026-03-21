@@ -1,0 +1,83 @@
+
+
+Topic 1: The Solar System (basic astronomy)
+------------------------------------------
+The Solar System has eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn,
+Uranus, and Neptune. Earth is the third planet from the Sun and the only known
+planet to support life. Mars is often called the "Red Planet" because iron oxide
+in its soil gives it a reddish appearance.
+
+Jupiter is the largest planet in the Solar System. It is a gas giant with many
+moons; one of its most famous moons is Europa. Saturn is known for its prominent
+rings, which are made mostly of ice and rock particles. Neptune is very far from
+the Sun and has strong winds in its atmosphere.
+
+
+Topic 2: A tiny company handbook (workplace facts)
+--------------------------------------------------
+Company name: Northwind Notes
+Office city: Kolkata
+Support email: support@northwindnotes.example
+
+Northwind Notes sells a note-taking app. The team has 6 members:
+2 engineers, 1 designer, 1 product manager, 1 QA tester, and 1 support specialist.
+The product manager is named Riya Sen. The lead engineer is named Arjun Das.
+
+Working hours are flexible, but most people are online from 11:00 to 17:00 IST.
+The weekly team sync happens every Wednesday at 16:30 IST.
+
+Refund policy: customers can request a refund within 14 days of purchase.
+If a customer asks after 14 days, support should respond politely and explain
+that refunds are not available after the policy window.
+
+
+Topic 3: Cooking notes (procedural instructions)
+------------------------------------------------
+To make lemon rice:
+1) Cook 1 cup of rice and let it cool.
+2) Heat 1 tablespoon oil in a pan.
+3) Add mustard seeds, curry leaves, and peanuts (optional).
+4) Add turmeric and salt.
+5) Mix the cooked rice with the seasoning.
+6) Finish with lemon juice and chopped coriander.
+
+Important: if the rice is too hot when mixed, it may become mushy.
+
+
+Topic 4: A short story (for co-reference and pronouns)
+------------------------------------------------------
+Mina visited the library on Saturday. She borrowed a book about databases and
+another book about space exploration. The librarian, Mr. Dutta, reminded her that
+the return deadline was 10 days from the borrowing date.
+
+Later, Mina told her friend Kabir that the database book was easier than the space
+book. Kabir asked why, and Mina said it had better examples and clearer diagrams.
+He then asked if she would recommend it to beginners.
+
+
+Topic 5: Databases and vector search (RAG-relevant definitions)
+--------------------------------------------------------------
+A database is a system that stores and organizes data so it can be retrieved and
+updated efficiently. Relational databases (like PostgreSQL and MySQL) store data
+in tables and often use SQL for queries. NoSQL databases (like MongoDB) store data
+in flexible formats, such as documents.
+
+A vector database stores embeddings (vectors) and is optimized for similarity
+search. In many AI applications, text is converted into embeddings, and the system
+retrieves the most semantically similar chunks to a user query.
+
+Retrieval-Augmented Generation (RAG) combines retrieval and generation:
+first retrieve relevant context from an external knowledge base, then generate an
+answer using an LLM conditioned on that retrieved context.
+
+
+Practice questions you can try (examples)
+-----------------------------------------
+- Who is the product manager and where is the office?
+- What is the refund policy window?
+- Which planet is the largest, and what is Saturn known for?
+- Why did Mina say one book was easier, and would she recommend it?
+- What is the difference between a relational database and a vector database?
+- Follow-up test: Ask "What is the deadline?" after asking about Mina at the library.
+- Follow-up test: Ask "How long is it?" after asking about the refund policy.
+
