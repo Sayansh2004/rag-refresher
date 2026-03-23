@@ -10,6 +10,7 @@ dependencies = [
     "faiss-cpu>=1.13.2",
     "httpx>=0.28.1",
     "ipykernel>=7.2.0",
+    "ipython>=9.10.0",
     "langchain>=1.2.10",
     "langchain-community>=0.4.1",
     "langchain-experimental>=0.4.1",
