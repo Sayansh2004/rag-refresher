@@ -1,0 +1,38 @@
+Langchain is a framework for buliding applications using LLMs.
+
+Langchain provides modular abstractions to combine LLMs with tools like OpenAI and Pinecone.
+
+
+You can create chains,memory , agents and retrievers.
+
+
+The Eiffel tower is located in Paris.
+
+
+France is a Popular tourist destination.
+
+
+We can create agents using langchain.
+
+
+OpenAI develops AI models such as GPT-4o, GPT-4.1, and embedding models used in retrieval systems.
+
+
+A common RAG pipeline includes loading data, splitting text into chunks, creating embeddings, and storing vectors in a database.
+
+
+When a user asks a question, the retriever finds top-k relevant chunks and sends them to the language model as context.
+
+
+Good chunking strategy improves retrieval quality because important facts stay together in semantically meaningful units.
+
+
+History-aware retrieval rewrites follow-up questions into standalone queries, for example converting "How does it help?" into "How does RAG help?".
+Vector databases like Chroma and FAISS are optimized for similarity search over embeddings.
+
+
+In production systems, chat history is usually stored per session in Redis or a database rather than only in memory.
+
+
+Prompt design also matters: the assistant should answer only from retrieved context and admit when information is missing.
+
