@@ -1,0 +1,38 @@
+LangGraph: A Short Reference for Building Agents
+================================================
+What is LangGraph?
+------------------
+LangGraph is a library for building stateful, multi-step applications with large language models (LLMs). It extends the idea of a single chat completion into a graph of nodes and edges: each node can call an LLM, a tool, or custom Python logic; edges define how control flows between steps. Graphs can loop (for ReAct-style reasoning), branch (conditional routing), and pause (human-in-the-loop or interrupts).
+Core concepts
+-------------
+State: A shared data structure (often a TypedDict) that every node reads and updates. Message lists are a common pattern; reducers like add_messages append new messages instead of replacing the whole list.
+Nodes: Functions that receive state and return partial updates (a dict of keys to merge into state).
+Edges: Connections between nodes. Special nodes include START and END for entry and exit.
+Checkpointer: Optional persistence so a run can be resumed, replayed, or inspected after each step—useful for production agents and debugging.
+Prebuilt helpers
+----------------
+StateGraph: The main builder class. You add nodes with add_node, wire them with add_edge and add_conditional_edges, then compile() to get an executable graph.
+ToolNode: Runs tool calls from an AIMessage against a list of LangChain tools.
+tools_condition: A common conditional edge that sends the graph to the tools node when the last AI message contains tool_calls, otherwise to END (or another path you configure).
+create_react_agent: A high-level pattern that wires an LLM, tools, and a loop so the model can reason, act, observe, and repeat until done.
+Typical ReAct loop (mental model)
+---------------------------------
+1. User message enters the graph.
+2. LLM node produces either a final answer or tool_calls.
+3. If tool_calls: ToolNode executes tools and appends ToolMessage results.
+4. Flow returns to the LLM with the new observations.
+5. Repeat until the model answers without requesting more tools.
+Common pitfalls for beginners
+-----------------------------
+Calling the base llm instead of llm.bind_tools(tools) inside the agent node—then the model never emits structured tool calls.
+Adding both a conditional edge to tools and a direct edge from the LLM node to END; the graph may finish before tools run.
+Forgetting that invoke returns the full state dict (e.g. {"messages": [...]}), not only the message list.
+Why use LangGraph for RAG agents?
+---------------------------------
+Retrieval can be one node; grading or re-routing can be another; summarization and final answer generation can be separate steps. Conditional edges let you skip retrieval when the query is simple, or retry when retrieved chunks fail a relevance check. State holds the question, retrieved documents, and intermediate reasoning in one place.
+Mini glossary
+-------------
+Checkpoint: A saved snapshot of graph state at a step boundary.
+Thread ID: An identifier used with a checkpointer to separate conversation histories.
+Interrupt: Pausing before or after a node so a human can approve, edit, or supply input.
+This file is intentionally structured with headings and repeated key terms so you can chunk it, embed it, and verify that your agent retrieves the right passages when asked about LangGraph basics, ToolNode, or ReAct loops.
