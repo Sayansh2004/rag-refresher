@@ -4,3 +4,52 @@ Langchain provides modular abstractions to combine LLMs with tools like OpenAI a
 You can create chains,memory , agents and retrievers.
 The Eiffel tower is located in Paris.
 France is a Popular tourist destination.
+
+
+
+================================================================================
+QUERY BANK (use these with your retriever + re-ranker)
+================================================================================
+Q1: Explain why lithium-ion batteries can respond to grid frequency deviations
+    faster than many traditional thermal generators.
+
+Q2: Compare DC-coupled versus AC-coupled solar-plus-storage architectures for
+    a retrofit versus a greenfield site.
+
+Q3: What is "duration" for a battery storage project and why does it matter
+    for market participation?
+
+Q4: What does a battery management system (BMS) do, and which measurements does
+    it rely on?
+
+Q5: Describe pumped-storage hydropower and give a typical round-trip efficiency
+    range, including why losses occur.
+
+Q6: What is grid-forming versus grid-following for inverter-based resources?
+
+Q7: A vendor calls a fuel-cell backup product a "grid battery." Why might
+    planners object to that wording?
+
+Q8: How do ultracapacitors differ from lithium-ion batteries for short bursts?
+
+Q9: What are calendar aging and cycle aging in lithium-ion degradation?
+
+Q10: Why might HVDC transmission be confused with energy storage, and why is
+     that confusion incorrect?
+
+HARD RE-RANKING QUERIES (lexical overlap everywhere; semantics must decide)
+H1: "Our site needs MW and MW and frequency support"  (intentionally messy)
+    Good answers discuss power capability, energy duration, and fast frequency
+    products; distractors talk about data-center MW or audio frequency.
+
+H2: "We want 95% round-trip efficiency for our battery project."
+    Prefer nuanced chunks defining boundaries; penalize universal single-number
+    claims unless qualified.
+
+H3: "Tell me about zinc batteries for the bulk power system."
+    Most relevant might discuss technology alternatives generally; penalize the
+    hearing-aid zinc-air distractor unless the re-ranker is fooled by keywords.
+
+================================================================================
+END OF FILE
+================================================================================

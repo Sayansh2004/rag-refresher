@@ -1,0 +1,608 @@
+================================================================================
+TOPIC CORPUS FOR RE-RANKING PRACTICE
+================================================================================
+Theme: Grid-scale energy storage, batteries, and power-system stability.
+
+How to use this file:
+- Split on "=== CHUNK-" boundaries to build a retrieval index.
+- First-stage retrieval (BM25 / dense) will often return plausible but wrong
+  chunks because many passages share words: battery, grid, MW, lithium,
+  frequency, inverter, capacity, power, voltage, thermal, cycle, efficiency.
+- A re-ranker (cross-encoder, LLM judge, or learning-to-rank features) should
+  prefer chunks whose *claims and constraints* match the query, not just
+  lexical overlap.
+
+Suggested practice queries appear at the end under QUERY BANK.
+================================================================================
+
+=== CHUNK-001 ===
+Title: Pumped hydro: basic idea
+Pumped-storage hydropower moves water between two reservoirs at different
+elevations. When electricity is plentiful and cheap, pumps lift water to the
+upper reservoir. When demand peaks, water flows down through turbines to
+generate electricity. Round-trip efficiency is often cited around 70–85%,
+depending on head height, tunnel losses, and motor-generator design.
+
+=== CHUNK-002 ===
+Title: Lithium-ion cell voltage window
+A typical NMC (nickel-manganese-cobalt) lithium-ion cell operates roughly
+between 3.0 V and 4.2 V per cell, with the exact limits set by the cathode
+chemistry and manufacturer guidance. Operating outside the recommended window
+accelerates degradation and can create safety risks. Battery management
+systems (BMS) enforce cell-level limits using voltage, current, and
+temperature sensors.
+
+=== CHUNK-003 ===
+Title: Grid "battery" confusion in marketing
+Some vendors describe fuel-cell backup products as "grid batteries" in
+brochures because they store energy chemically. For power-system planning,
+engineers usually reserve the term "battery" for electrochemical devices with
+rapid charge/discharge and well-defined round-trip efficiency curves, not for
+every form of stored energy.
+
+=== CHUNK-004 ===
+Title: Primary frequency response (very short)
+Frequency deviations on AC grids occur when generation and load are briefly
+mismatched. Fast-responding resources can inject or absorb power for seconds
+to tens of seconds to arrest frequency drift before slower reserves engage.
+
+=== CHUNK-005 ===
+Title: Inverter-based resources (IBR) and grid-forming
+Solar PV and many battery plants connect through inverters. Grid-following
+inverters track the grid voltage angle. Grid-forming inverters can establish
+voltage and contribute stiffness under weak-grid conditions, but control
+design must avoid instability when many IBRs interact.
+
+=== CHUNK-006 ===
+Title: Lithium mining and water use (environmental angle)
+Lithium extraction from brine can consume large volumes of water in arid
+regions, raising local environmental concerns. This topic is important for
+supply-chain ethics, but it is not a direct answer to questions about how
+a battery plant provides ancillary services on a transmission network.
+
+=== CHUNK-007 ===
+Title: Nameplate power vs usable energy (MWh)
+A 100 MW / 400 MWh battery site can discharge up to 100 MW for about four
+hours if fully usable energy matches the headline MWh. Real operations reduce
+usable range due to depth-of-discharge limits, auxiliary loads, efficiency
+losses, and market dispatch decisions.
+
+=== CHUNK-008 ===
+Title: Round-trip efficiency comparison (hand-wavy)
+People sometimes say "batteries are ~90% efficient" while "hydro is ~80%."
+These numbers are not universally comparable because they ignore auxiliary
+plant loads, transformer losses, and the difference between DC cell efficiency
+and AC station-level efficiency.
+
+=== CHUNK-009 ===
+Title: Sodium-ion as lithium alternative (researchy)
+Sodium-ion batteries promise lower material cost and better cold-temperature
+behavior in some formulations, but energy density and cycle life remain
+practical hurdles for long-range EVs. For stationary storage, sodium-ion may
+be viable where footprint and mass constraints are relaxed.
+
+=== CHUNK-010 ===
+Title: Spinning reserve vs non-spinning reserve
+Spinning reserve is generation capacity that is already synchronized and can
+ramp quickly. Non-spinning reserve may start from offline but can be brought
+online within a defined time. Batteries often compete for fast-ramping products
+that resemble spinning reserve in effect, even though they do not "spin."
+
+=== CHUNK-011 ===
+Title: Transformer tap changers (tangential grid hardware)
+Distribution transformers sometimes include on-load tap changers to regulate
+voltage as load varies. This is classic power-distribution equipment. It is
+not storage, but documents about "grid voltage control" might retrieve it
+because of shared vocabulary.
+
+=== CHUNK-012 ===
+Title: Battery degradation: calendar vs cycle aging
+Calendar aging proceeds with time even if a battery is idle, driven by
+temperature and state-of-charge history. Cycle aging accumulates with charge
+and discharge throughput. Both reduce available capacity and can increase
+internal resistance, affecting the battery's ability to deliver short bursts
+of high power.
+
+=== CHUNK-013 ===
+Title: Ultra-capacitors for power-heavy bursts
+Ultracapacitors excel at delivering very high power for seconds, with far
+lower energy density than lithium-ion. They can complement batteries by
+handling peak power spikes while the battery supplies sustained energy.
+
+=== CHUNK-014 ===
+Title: "MW" in data centers vs power grids
+Data-center engineers talk about megawatts of IT load and cooling. The unit
+MW appears in both domains. A chunk about data-center MW will sometimes match
+queries about "grid MW services" even when the user cares about ISO markets,
+not server racks.
+
+=== CHUNK-015 ===
+Title: State of charge (SOC) estimation
+SOC is not measured directly; it is estimated using coulomb counting,
+open-circuit voltage trends, and model-based observers. Estimation errors can
+cause overly conservative dispatch or accidental overcharge risk if safety
+margins are mis-calibrated.
+
+=== CHUNK-016 ===
+Title: Synthetic inertia from batteries
+Some grid codes require synthetic inertia or fast frequency response from
+battery plants. The implementation depends on control loops that emulate
+inertial response using measured frequency rate-of-change, within safe power
+and energy limits so the plant does not exhaust itself in seconds.
+
+=== CHUNK-017 ===
+Title: Hydrogen storage vs battery storage (efficiency trap)
+Power-to-gas pathways (electrolysis, storage, later combustion or fuel cell)
+can incur large round-trip energy losses compared with lithium-ion cycling.
+Hydrogen may still be attractive for long-duration seasonal storage where
+batteries are uneconomical, but "efficiency" answers differ by use case.
+
+=== CHUNK-018 ===
+Title: AEMO-style FCAS products (generic description)
+Many markets define frequency control ancillary services as raise and lower
+services across different response timescales. Fast services reward resources
+that can change output almost immediately after a frequency event, which is
+where batteries are strongest.
+
+=== CHUNK-019 ===
+Title: Thermal runaway triggers
+Thermal runaway in lithium-ion packs can be triggered by internal shorting,
+overcharge, penetrating damage, or extreme overheating. Mitigation includes
+cell spacing, venting, suppression systems, and strict BMS protections.
+This is safety content, not market bidding strategy.
+
+=== CHUNK-020 ===
+Title: Peaker plants vs batteries (dispatch economics)
+Gas peakers earn value by running rarely during expensive hours. Batteries earn
+value by stacking energy arbitrage, ancillary services, and capacity payments.
+Comparing them requires locational pricing, cycling limits, and interconnection
+queues—keywords overlap heavily with "grid" and "MW."
+
+=== CHUNK-021 ===
+Title: DC-coupled solar-plus-storage
+DC coupling connects PV and batteries on a shared DC bus before a single
+inverter stage. It can reduce clipping losses and conversion steps compared
+with AC-coupled architectures, improving overall energy yield in some designs.
+
+=== CHUNK-022 ===
+Title: AC-coupled retrofit
+AC coupling adds a battery inverter tied to the AC network, which can simplify
+retrofits on existing solar sites. It may introduce extra conversion losses
+relative to DC-coupled greenfield designs, depending on operating points.
+
+=== CHUNK-023 ===
+Title: Power factor and reactive power (classic EE)
+Reactive power supports magnetic fields in motors and transformers and affects
+AC current magnitude without doing average real work at the load. Inverters
+can supply or absorb reactive power if designed and permitted by the utility.
+This is related to "grid support" language but is not "energy storage" itself.
+
+=== CHUNK-024 ===
+Title: Interconnection studies and queues
+Connecting a large battery plant often requires steady-state and dynamic studies
+to ensure it does not violate voltage or stability limits under contingencies.
+Queue delays can be years; they affect project finance even if the battery
+technology is mature.
+
+=== CHUNK-025 ===
+Title: C-rate definition
+C-rate expresses current relative to capacity: 1C for a 3 Ah cell is about 3 A.
+High C-rate operation increases I*R losses and heat generation, which interacts
+with cooling system design and warranty constraints.
+
+=== CHUNK-026 ===
+Title: LFP chemistry tradeoff
+Lithium iron phosphate (LFP) offers good cycle life and safety margins, with
+lower nominal voltage per cell than many NMC packs. Pack design must account
+for voltage differences when choosing inverters and protection thresholds.
+
+=== CHUNK-027 ===
+Title: "Grid battery" in home marketing
+Residential "home battery" products are sometimes advertised as protecting
+you from "grid outages." These systems are smaller and are not equivalent to
+utility-scale resources that participate in wholesale ancillary services.
+
+=== CHUNK-028 ===
+Title: Black start capability
+Black start refers to restarting parts of the grid without external power.
+Some battery projects are evaluated for black-start support, but not every
+battery installation is configured or contracted for that role.
+
+=== CHUNK-029 ===
+Title: SOC vs SOH
+State of health (SOH) reflects how much capacity remains compared with new,
+while SOC is how full the battery is now. De-rating for market participation
+may depend on SOH-aware dispatch limits.
+
+=== CHUNK-030 ===
+Title: Congestion and curtailment
+Transmission congestion can force renewables to curtail even when energy prices
+are low or negative. Storage can shift energy across time but cannot magically
+bypass a congested corridor unless it is located and operated to relieve the
+binding constraint.
+
+=== CHUNK-031 ===
+Title: Battery warranty cycles
+Warranties often cap equivalent full cycles per year or total throughput.
+Aggressive ancillary-service dispatch can consume cycle budget quickly,
+creating tension between revenue maximization and long-term asset value.
+
+=== CHUNK-032 ===
+Title: Flywheels for frequency regulation
+Flywheels provide very fast response for frequency regulation with limited
+energy duration. They compete with batteries in some markets for fast
+regulation products, though duration and maintenance profiles differ.
+
+=== CHUNK-033 ===
+Title: Zinc-air hearing-aid batteries (distractor)
+Zinc-air primary cells are common in hearing aids. They are not rechargeable
+grid assets, but keyword "zinc" and "battery" can create amusing retrieval
+false positives in small corpora.
+
+=== CHUNK-034 ===
+Title: HVDC links and storage confusion
+HVDC transmission moves bulk power between regions. People occasionally confuse
+HVDC with "storage" because it relocates energy in space; it does not
+inherently store energy for later hours like a battery.
+
+=== CHUNK-035 ===
+Title: Inverter efficiency curves
+Inverter efficiency is not constant; it varies with loading. Part-load losses
+matter for systems that operate frequently at moderate output, affecting
+realized round-trip efficiency.
+
+=== CHUNK-036 ===
+Title: Cell balancing
+Series strings require balancing so no single cell drifts to dangerous voltage
+while the pack average looks acceptable. Active balancing moves charge between
+cells; passive balancing bleeds energy through resistors.
+
+=== CHUNK-037 ===
+Title: Seasonal storage and lithium limits
+Lithium-ion economics favor intraday cycling. Multi-week seasonal shifting
+often points toward different technologies (hydro, hydrogen, thermal storage)
+because storing enormous MWh cheaply dominates the optimization.
+
+=== CHUNK-038 ===
+Title: FERC Order 841 (US context, high level)
+In the United States, FERC Order 841 aimed to remove barriers for electric
+storage participation in wholesale markets operated by RTOs/ISOs, including
+dispatch, bidding, and capacity eligibility considerations.
+
+=== CHUNK-039 ===
+Title: Voltage ride-through requirements
+Grid codes specify how generation and storage must remain connected through
+voltage dips and swells, within defined boundaries. Ride-through settings
+interact with inverter protections and utility interconnection agreements.
+
+=== CHUNK-040 ===
+Title: "Capacity factor" misuse with batteries
+Capacity factor is common for generation, but for batteries the meaningful
+metric is often utilization of power and energy limits across stacked services.
+Naive comparisons between solar CF and battery CF confuse learners.
+
+=== CHUNK-041 ===
+Title: Behind-the-meter vs front-of-meter
+Behind-the-meter batteries serve a customer's site and may reduce demand
+charges. Front-of-meter utility-scale batteries connect at transmission or
+distribution levels and typically participate in wholesale markets or utility
+programs. The terms share the word "meter" with unrelated utility billing
+topics.
+
+=== CHUNK-042 ===
+Title: Harmonics and filtering
+Inverters can produce harmonic currents. Filters and control strategies reduce
+harmonic injection to comply with interconnection standards. Harmonics are
+a power-quality topic adjacent to inverter discussions.
+
+=== CHUNK-043 ===
+Title: Cold-temperature lithium limitations
+Charging lithium-ion cells below manufacturer-specified temperatures can cause
+lithium plating and permanent damage. Cold-climate sites may need heating
+and operational restrictions, affecting availability during winter events.
+
+=== CHUNK-044 ===
+Title: Fire codes and battery containers
+Containerized lithium-ion systems must meet fire codes, ventilation, detection,
+and emergency response planning. Local AHJ requirements can materially affect
+layout and spacing, separate from electrical engineering calculations.
+
+=== CHUNK-045 ===
+Title: Virtual power plants (VPP)
+Aggregations of many small batteries can be coordinated like a VPP to bid into
+markets or provide peak reduction. Telemetry, communications latency, and
+contractual availability become critical at scale.
+
+=== CHUNK-046 ===
+Title: "Green battery" claims
+Supply-chain auditing attempts to trace cobalt, nickel, and lithium sourcing.
+These sustainability narratives are politically salient but are weakly
+connected to technical questions about droop control in grid-forming inverters.
+
+=== CHUNK-047 ===
+Title: Droop control basics
+Droop control adjusts active power based on frequency deviation and reactive
+power based on voltage deviation, enabling parallel operation of sources
+without a single master clock. It is a classical concept extended carefully
+to inverter-dominated grids.
+
+=== CHUNK-048 ===
+Title: SCADA and EMS (operations)
+Supervisory control and data acquisition systems gather field measurements.
+Energy management systems optimize dispatch schedules subject to constraints.
+These software layers sit above the physical battery hardware.
+
+=== CHUNK-049 ===
+Title: NERC reliability standards (pointer)
+North American reliability organizations publish standards for planning and
+operating the bulk power system. Compliance touches modeling, telemetry, and
+coordination of resources, including inverter-based storage in some cases.
+
+=== CHUNK-050 ===
+Title: Coincident peak demand charges
+Commercial electricity tariffs sometimes charge based on contribution to grid
+peak. Batteries can target those peaks, but the optimization depends on
+forecasting and tariff rules, not on inverter switching frequency alone.
+
+=== CHUNK-051 ===
+Title: Battery augmentation plans
+Owners plan augmentation years ahead by adding new containers or replacing
+modules as capacity fades. Financial models treat augmentation as capex events
+that interact with tax credits and interconnection amendments.
+
+=== CHUNK-052 ===
+Title: "Power" vs "energy" mistake (pedagogical)
+Power is watts; energy is watt-hours. A battery rated 100 MW can release energy
+fast, but total MWh determines how long it can sustain that power. Many
+retrieval errors come from documents that mention MW prominently while the user
+asked an MWh-duration question.
+
+=== CHUNK-053 ===
+Title: Grid-scale battery fires in headlines
+Media coverage of rare fires can dominate public perception. Engineering
+responses emphasize probability reduction through design, monitoring, and
+firefighting protocols. This chunk mentions "battery" and "grid" frequently
+but is sociotechnical, not control-theory deep.
+
+=== CHUNK-054 ===
+Title: Phasor measurement units (PMUs)
+PMUs provide high-sample-rate angle measurements used in wide-area monitoring.
+They help operators detect oscillations and disturbances. PMUs are not storage,
+but they coexist in "smart grid" corpora with batteries.
+
+=== CHUNK-055 ===
+Title: Ramp rate constraints
+Some markets impose ramp limits on resources to avoid abrupt shocks. Batteries
+can ramp extremely quickly, so limits may be contractual or inverter-filtered
+rather than physical.
+
+=== CHUNK-056 ===
+Title: Degradation-aware dispatch (concept)
+Advanced operators co-optimize revenue and degradation costs by valuing marginal
+cycle wear. This requires models linking temperature, SOC window, and C-rate to
+fade rates—more complex than simple efficiency constants.
+
+=== CHUNK-057 ===
+Title: Lead-acid in off-grid cabins
+Lead-acid batteries still appear in off-grid cabins and small renewables due to
+low upfront cost. They are increasingly replaced by lithium where depth of
+discharge and maintenance burden matter.
+
+=== CHUNK-058 ===
+Title: Superconducting magnetic energy storage (SMES)
+SMES stores energy in a magnetic field. It is niche compared with batteries but
+illustrates that "storage" spans many physics domains. Keyword collisions can
+happen in broad searches for "fast response storage."
+
+=== CHUNK-059 ===
+Title: Pay-as-bid vs uniform pricing (market mechanics)
+Market design affects storage revenues. Whether a battery is paid its bid or
+the clearing price changes incentives and risk. This is economics, not chemistry.
+
+=== CHUNK-060 ===
+Title: Inverter short-circuit contribution
+Inverters contribute to fault current differently than synchronous machines.
+Protection engineers must study how battery plants affect relay coordination.
+
+=== CHUNK-061 ===
+Title: "Frequency" in audio engineering (hard distractor)
+Audio engineers discuss frequency in Hz for sound. A naive dense embedding
+might relate "frequency response" audio gear to "frequency response" power grids.
+Good re-ranking uses context to separate domains.
+
+=== CHUNK-062 ===
+Title: TOU arbitrage intuition
+Time-of-use rates create cheap charging windows and expensive discharge windows
+for behind-the-meter batteries. The optimal policy resembles inventory
+management under uncertainty in electricity prices.
+
+=== CHUNK-063 ===
+Title: Co-located solar and clipping
+Solar inverters may clip PV output at AC limits. A co-located battery can
+store otherwise-clipped DC energy in some architectures, improving captured
+energy—an example where "inverter" and "battery" appear together for a precise
+reason.
+
+=== CHUNK-064 ===
+Title: Grid codes: UK vs Australia naming
+Different regions name services differently, but the physical need—fast
+frequency support, voltage support, and reserves—recurs. Re-ranking should
+notice jurisdiction mismatches when the user specifies a location.
+
+=== CHUNK-065 ===
+Title: Second-life EV batteries
+Retired EV packs may be repurposed for stationary storage after testing and
+reconfiguration. State-of-health dispersion complicates aggregation and safety
+certification.
+
+=== CHUNK-066 ===
+Title: "Capacity" in finance vs MWh
+Project finance discussions use "capacity" to mean MW capability, while
+"capacity payment" means something market-specific. Lexical overlap with "cell
+capacity" in batteries is brutal for bag-of-words retrievers.
+
+=== CHUNK-067 ===
+Title: Islanded microgrids
+In islanded operation, batteries may need grid-forming capability to set
+frequency and voltage because there is no stiff infinite bus. Transitioning
+between grid-tied and islanded modes is a controls challenge.
+
+=== CHUNK-068 ===
+Title: EMS and BMS boundary
+The battery management system protects cells. The energy management system
+optimizes revenue and grid services. Confusing the two acronyms is a common
+student error; documents containing both acronyms can confuse retrieval.
+
+=== CHUNK-069 ===
+Title: Lithium brine vs hard rock (supply)
+Hard-rock spodumene mining differs from South American brine evaporation in
+water intensity and lead times. This is upstream supply, not inverter control.
+
+=== CHUNK-070 ===
+Title: Ancillary service stacking risks
+Trying to earn multiple simultaneous products can create conflicting power
+commands or exhaust state-of-charge. Market rules and plant controllers must
+define precedence and feasibility checks.
+
+=== CHUNK-071 ===
+Title: Transformer inrush (tangential)
+Energizing transformers can cause inrush currents rich in harmonics. It is a
+classic power topic that shares "inverter/transformer/grid" vocabulary with
+storage interconnection studies.
+
+=== CHUNK-072 ===
+Title: Probabilistic hosting capacity
+Distribution planners estimate how much DER can be added before upgrades are
+needed, using stochastic methods. Batteries can either help or stress hosting,
+depending on location and dispatch.
+
+=== CHUNK-073 ===
+Title: "Efficiency" in machine learning vs batteries (distractor)
+In ML, "model efficiency" might mean FLOPs per token. In storage, efficiency
+means energy out over energy in. Shared word "efficiency" is a classic trap for
+semantic search unless the re-ranker uses domain cues.
+
+=== CHUNK-074 ===
+Title: Solid-state batteries (future)
+Solid-state electrolytes aim to improve safety and energy density, but
+manufacturing yield and interface stability remain barriers as of many public
+roadmaps. For learning re-ranking, this chunk is "future tech" fluff unless the
+query asks about emerging chemistries.
+
+=== CHUNK-075 ===
+Title: Detailed answer: why batteries help frequency quickly
+When load suddenly exceeds generation, synchronous inertia slows the rate of
+frequency decline, but additional active power must be injected to restore
+balance. Lithium-ion battery inverters can change real power output within
+hundreds of milliseconds to seconds, making them effective for fast frequency
+response products. The limitation is energy: rapid power injection depletes
+stored energy, so operators size duration and maintain SOC policies.
+
+=== CHUNK-076 ===
+Title: Detailed answer: DC vs AC coupling tradeoffs (study notes)
+DC-coupled solar-plus-storage shares a DC bus, which can reduce conversion
+stages and mitigate clipping losses when the battery charges from excess PV
+DC energy. AC-coupled systems connect the battery through a separate inverter on
+the AC side, which can simplify retrofits and site layout but may add
+conversion losses. The better choice depends on greenfield vs retrofit,
+interconnection limits, and whether the operator prioritizes PV energy capture
+or flexible grid services from a standalone storage inverter.
+
+=== CHUNK-077 ===
+Title: Detailed answer: what operators mean by "duration"
+Duration is the ratio of usable energy storage to rated power, often expressed
+as hours at full discharge (e.g., 400 MWh / 100 MW ≈ 4 hours). Duration matters
+because some market products require sustained output for minutes to hours, not
+only a brief pulse. Very short-duration systems may excel at power-quality
+events but cannot carry energy-shifting strategies that need many hours.
+
+=== CHUNK-078 ===
+Title: Detailed answer: BMS responsibilities list
+A battery management system monitors cell voltages, temperatures, and currents;
+estimates SOC and sometimes SOH; enforces limits to prevent overcharge,
+over-discharge, and overheating; performs balancing; communicates faults; and
+interfaces with the power conversion system and site safety systems. It is
+foundational for safe operation and warranty compliance.
+
+=== CHUNK-079 ===
+Title: Near-duplicate with subtle drift (A)
+Battery inverters on utility scale are often rated in MW AC, while the DC
+battery stack is rated in MWh and DC power limits. Interconnection studies
+examine both the AC interface capabilities and fault behaviors.
+
+=== CHUNK-080 ===
+Title: Near-duplicate with subtle drift (B)
+Utility-scale battery inverters are typically specified in MW AC, while the DC
+portion is described using MWh energy and DC current limits. Interconnection
+review processes evaluate AC interface performance and the plant's contribution
+under fault conditions.
+
+=== CHUNK-081 ===
+Title: Contradiction pair setup (dated claim style)
+Early blog posts sometimes claimed round-trip battery efficiency "above 95%"
+as a universal rule. Modern station-level reporting often shows lower realized
+efficiency after HVAC, transformer, and auxiliary loads—especially at partial
+load.
+
+=== CHUNK-082 ===
+Title: Contradiction pair setup (nuanced claim style)
+Realized AC-to-AC round-trip efficiency for utility battery stations depends on
+operating point, temperature, and auxiliary loads; headline DC cell efficiency
+is only one component. Treat single-number efficiency claims with skepticism
+unless the boundary conditions are defined.
+
+=== CHUNK-083 ===
+Title: Procedure-like chunk: interconnection checklist (no storytelling)
+Required artifacts may include single-line diagrams, protection settings,
+dynamic models (generic or vendor-specific), power flow cases, short-circuit
+studies, ride-through demonstration, and commissioning test reports. Timelines
+depend on queue position and study cycles.
+
+=== CHUNK-084 ===
+Title: Procedure-like chunk: commissioning tests (battery plant)
+Typical tests include low/high voltage ride-through, frequency response
+verification, reactive power capability checks, harmonics measurements,
+communication latency tests to the ISO, and controlled charge/discharge ramps
+to validate ramp rates and limits.
+
+=== CHUNK-085 ===
+Title: Table-like text (hard for some retrievers)
+Metric | Typical meaning | Common pitfall
+MW | maximum discharge/charge power capability | confused with MWh
+MWh | energy capacity | confused with MW
+SOC | how full now | confused with SOH
+SOH | remaining capacity vs new | confused with SOC
+C-rate | current normalized by Ah | ignored in grid-only discussions
+
+=== CHUNK-086 ===
+Title: Short glossary burst
+Inverter: converts DC to AC (and often bidirectionally). Rectifier: AC to DC.
+PCS: power conversion system for storage. POI: point of interconnection.
+ISO/RTO: wholesale market operator regions in some countries.
+
+=== CHUNK-087 ===
+Title: Interview-style Q/A mimic
+Q: Why can't we use only thermal plants for fast frequency events?
+A: Thermal steam plants have inertia and can ramp, but many cannot change
+output as quickly as batteries for the first seconds after an imbalance. Markets
+therefore price fast response separately from slower reserves.
+
+=== CHUNK-088 ===
+Title: Interview-style Q/A mimic (trick wording)
+Q: Do batteries "create" inertia?
+A: They do not add physical synchronous inertia unless coupled to rotating
+mass, but they can provide emulated inertial response or fast frequency
+response through controls, which serves a similar stabilizing function on
+different timescales.
+
+=== CHUNK-089 ===
+Title: Legal/boilerplate noise
+This document is for educational retrieval exercises. It is not engineering
+advice, not interconnection instruction, and not a warranty. Always verify with
+local utilities, codes, and qualified engineers.
+
+=== CHUNK-090 ===
+Title: Repetition stress test (intentionally redundant sentences)
+Battery power is measured in MW. Battery energy is measured in MWh. Power times
+time relates to energy. If you multiply MW by hours you get MWh. Many mistakes
+come from mixing MW and MWh. MW is not MWh. MWh is not MW.
