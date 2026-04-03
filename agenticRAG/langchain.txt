@@ -1,0 +1,56 @@
+LangChain — Reference Notes for Retrieval and Agent Design
+==========================================================
+
+Overview
+--------
+LangChain is a framework for building applications with language models. It standardizes how you connect models to prompts, tools, memory, and external data. Core abstractions include runnables (composable units with invoke, batch, stream), message types for chat models, and tool definitions the model can request by name.
+
+Runnable interface
+------------------
+Many LangChain components implement the Runnable protocol. You can pipe runnables with the | operator, build sequences, and reuse the same patterns for LLMs, retrievers, and parsers. invoke takes a single input; batch processes many; stream yields chunks for responsive UIs. LangChain Expression Language (LCEL) chains are built from these runnables.
+
+Messages and chat models
+------------------------
+Chat models consume sequences of messages: SystemMessage sets behavior, HumanMessage is user input, AIMessage is model output (optionally with tool_calls), ToolMessage carries tool results back to the model. trim_messages and similar utilities help fit long histories into context windows. bind_tools attaches structured tool schemas so the model can return tool_calls instead of only plain text.
+
+Tools and tool calling
+----------------------
+A tool wraps a function with a name, description, and argument schema. The model chooses tools based on descriptions; the runtime executes the function and returns a ToolMessage. StructuredTool and @tool decorators help define tools in Python. Poor descriptions lead to wrong tool selection—documentation and examples in the description matter for agent quality.
+
+Retrieval and RAG in LangChain
+------------------------------
+Document loaders ingest files, URLs, or APIs into Document objects with page_content and metadata. Text splitters chunk documents for embedding. Vector stores (e.g. FAISS, Chroma) index embeddings for similarity search. Retriever abstractions wrap vectorstore.as_retriever or custom search logic. Retrieval chains combine retriever output with a prompt and LLM to generate grounded answers.
+
+Document loaders and splitters
+------------------------------
+RecursiveCharacterTextSplitter is widely used to split on separators while respecting chunk_size and chunk_overlap. Loader choice depends on format: TextLoader for plain text, PyPDFLoader for PDFs, etc. Metadata preserved on chunks helps filtering (source path, section titles).
+
+Embeddings and vector stores
+----------------------------
+Embedding models turn text into vectors; similar meanings tend to lie close in vector space. OpenAIEmbeddings and other providers integrate with LangChain. from_documents builds an index from chunked Documents. Similarity search returns the top-k chunks; parameters like score_threshold or MMR can diversify results.
+
+Memory patterns
+---------------
+ConversationBufferMemory and similar utilities store past turns for chatbots. In LangGraph-heavy setups, message lists in graph state often replace classic memory classes. The important idea is explicit storage of what the model should see on the next turn—either summarized or full history.
+
+Output parsers
+--------------
+Parsers convert model strings into structured data (JSON, lists, enums). They reduce brittle string splitting in applications. When combined with structured output or tool calling, parsers are used less for free-form JSON and more for legacy prompts.
+
+LangSmith and observability
+---------------------------
+LangSmith provides tracing, datasets, and evaluation for LangChain and LangGraph apps. Setting LANGCHAIN_TRACING_V2 and related environment variables logs runs for debugging latency, token usage, and failure modes.
+
+How LangChain differs from LangGraph
+------------------------------------
+LangChain focuses on components and composable runnables (chains). LangGraph focuses on cyclic graphs, persistent state, and first-class control flow. Production agents often use LangChain tools and models inside LangGraph nodes. Questions about "LCEL", "Document loader", or "vector store retriever" map well to this document; questions about "StateGraph" or "checkpointer" often map to LangGraph-specific docs.
+
+Security and production notes
+-----------------------------
+Never commit API keys; use environment variables. Validate tool inputs when tools have side effects (file delete, payments). Rate-limit external APIs wrapped as tools. Log retriever queries in development to debug wrong-chunk problems.
+
+Keywords for retrieval drills
+-----------------------------
+Runnable, LCEL, HumanMessage, SystemMessage, bind_tools, StructuredTool, retriever, vector store, embedding, TextLoader, RecursiveCharacterTextSplitter, Document, LangSmith, tool calling, chat model.
+
+This document is intentionally long and sectioned so chunking and embedding can be tested. Queries about "retriever", "embedding", "LCEL", or "Document loader" should prefer this file over graph-orchestration-only documentation.

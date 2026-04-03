@@ -1,0 +1,52 @@
+LangGraph — Reference Notes for Retrieval and Agent Design
+==========================================================
+
+Overview
+--------
+LangGraph is a library for building stateful, multi-step applications on top of large language models. Unlike a single chat completion, a LangGraph application is modeled as a directed graph: nodes perform work (call an LLM, run a tool, execute Python), and edges describe how execution moves between nodes. The same graph can loop (typical for agents), branch on conditions, and integrate human approval steps.
+
+Why graphs instead of linear chains
+-----------------------------------
+Linear chains run steps in a fixed order. Graphs add explicit control flow: you can return to a model after tool results, skip retrieval when not needed, or route to different specialists. That makes LangGraph a natural fit for ReAct agents, multi-stage RAG (retrieve, grade, rewrite query), and durable workflows that survive restarts when paired with a checkpointer.
+
+State and reducers
+------------------
+Graph state is usually declared with a schema (TypedDict or Pydantic). Each node receives the current state and returns a partial update; LangGraph merges updates into the full state. For chat history, the messages channel often uses the add_messages reducer so new HumanMessage, AIMessage, and ToolMessage objects append instead of replacing the entire list. Other fields (e.g. retrieved_documents, user_query) can be simple assignment or custom reducers.
+
+START, END, and compilation
+---------------------------
+START and END are special sentinel nodes. You attach edges from START to your entry node(s) and from terminal nodes to END. After defining nodes and edges, you call compile() on the StateGraph to obtain a runnable graph. Compilation can include a checkpointer for persistence, interrupt lists for debugging, and optional store backends.
+
+Checkpointers and thread_id
+---------------------------
+A checkpointer saves state after graph steps. That enables resuming runs, time travel debugging, and associating state with a conversation thread. The thread_id is passed inside invoke config under configurable. Different thread_ids isolate conversations. MemorySaver is an in-memory checkpointer suitable for notebooks; production systems often use database-backed checkpointers.
+
+ToolNode and tools_condition
+----------------------------
+ToolNode executes tool calls attached to an AIMessage against a list of LangChain tools. tools_condition is a prebuilt routing function: if the last AI message contains tool_calls, routing goes to the tools node; otherwise it typically routes to END. Together with an edge from tools back to the model node, this implements the standard tool-calling loop without hand-writing all branching logic.
+
+Human-in-the-loop and interrupts
+--------------------------------
+LangGraph supports interrupt_before and interrupt_after on specific nodes so execution pauses until resumed. That pattern supports human approval of tool arguments, editing retrieved text before generation, or escalation workflows. Interrupts integrate with checkpointing so paused runs can be stored and continued later.
+
+Subgraphs and composition
+-------------------------
+A compiled graph can be added as a node inside a larger StateGraph. The outer graph might route user queries to a RAG subgraph, a math subgraph, or a simple Q&A node. Visualization of the outer graph often shows one box for the subgraph; the inner graph has its own detailed diagram. invoke on the outer graph runs the nested graph as part of the workflow.
+
+Streaming and observability
+---------------------------
+Graphs support stream modes so clients can receive token streams, node updates, or full state snapshots per step. LangSmith tracing works with LangGraph runs when environment variables are set, helping compare traces across prompts and graph versions.
+
+Common mistakes when learning LangGraph
+----------------------------------------
+Using llm.invoke instead of llm.bind_tools(tools).invoke in the agent node, so the model never emits tool_calls. Adding both conditional_edges to tools and a direct edge from the same LLM node to END, which can terminate before tools run. Expecting checkpointers to remember facts that were never written into state (e.g. only passing question without messages). Confusing the inner compiled agent graph with a thin wrapper graph that has a single agent node.
+
+Relation to LangChain
+---------------------
+LangChain provides models, tools, prompts, and document loaders. LangGraph orchestrates those pieces in a graph with explicit state and persistence. Many LangChain agents are implemented or exposed as LangGraph compiled graphs in recent versions.
+
+Keywords for retrieval drills
+-----------------------------
+StateGraph, add_messages, ToolNode, tools_condition, MemorySaver, thread_id, checkpoint, interrupt_before, subgraph, compile, ReAct loop, conditional_edges, persistence, streaming, LangSmith.
+
+This document is intentionally long and sectioned so chunking and embedding can be tested. Queries about "checkpointer", "ToolNode", "add_messages", or "subgraph" should prefer this file over generic chain documentation.
