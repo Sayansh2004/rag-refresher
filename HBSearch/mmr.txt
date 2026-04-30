@@ -1,0 +1,167 @@
+# LangChain Knowledge Base - Sample Document for MMR Testing
+# This file contains intentionally repetitive content to demonstrate MMR effectiveness
+
+=== CHUNK 1 ===
+LangChain is an open-source framework designed to simplify the development of applications
+using large language models (LLMs). It provides a standard interface for chains, agents,
+and memory, making it easier to build complex LLM-powered applications.
+
+=== CHUNK 2 ===
+LangChain is a popular open-source framework that helps developers build applications
+powered by large language models. It offers a unified interface for working with chains,
+agents, and memory components in LLM applications.
+
+=== CHUNK 3 ===
+LangChain was created to make it easier to develop LLM-based applications. The framework
+standardizes how developers interact with language models, providing tools for chaining,
+agents, and managing conversation memory.
+
+=== CHUNK 4 ===
+RAG (Retrieval-Augmented Generation) is a technique in LangChain where external knowledge
+is retrieved from a vector store and passed to the LLM as context. This allows the model
+to answer questions beyond its training data by fetching relevant documents at runtime.
+
+=== CHUNK 5 ===
+Retrieval-Augmented Generation, or RAG, is a core LangChain pattern. It works by retrieving
+relevant documents from a vector database and injecting them into the LLM prompt as context,
+enabling the model to use up-to-date or domain-specific knowledge.
+
+=== CHUNK 6 ===
+In LangChain, RAG pipelines retrieve external documents from a vector store and provide them
+as context to the language model. This helps the LLM answer questions using knowledge that
+wasn't part of its original training data.
+
+=== CHUNK 7 ===
+LangChain supports multiple vector stores including FAISS, Chroma, Pinecone, Weaviate, and
+Qdrant. These stores index document embeddings and enable fast similarity search during
+retrieval. FAISS is commonly used for local, in-memory vector search.
+
+=== CHUNK 8 ===
+Vector databases supported by LangChain include FAISS, Chroma, Pinecone, and Weaviate.
+They store document embeddings and allow efficient nearest-neighbor search. FAISS is
+popular for local development due to its speed and simplicity.
+
+=== CHUNK 9 ===
+LangChain integrates with vector stores like Pinecone, Chroma, FAISS, and Qdrant to
+enable semantic search. These databases store embeddings and retrieve the most similar
+documents to a user query using cosine or dot-product similarity.
+
+=== CHUNK 10 ===
+LangChain Agents are autonomous systems that use an LLM as a reasoning engine to decide
+which tools to call and in what order. Agents can use tools like web search, calculators,
+SQL databases, and custom APIs to complete complex, multi-step tasks.
+
+=== CHUNK 11 ===
+In LangChain, an Agent uses the LLM to reason about which tool to invoke next. It operates
+in a loop: observe → think → act → observe, until the task is complete. Common tools
+include web search, Python REPL, and database connectors.
+
+=== CHUNK 12 ===
+LangChain Agents leverage LLMs to autonomously select and execute tools. The agent receives
+a user goal, reasons about the steps needed, calls appropriate tools, and synthesizes a
+final answer. This makes agents suitable for multi-hop reasoning tasks.
+
+=== CHUNK 13 ===
+Embeddings in LangChain convert text into high-dimensional numerical vectors that capture
+semantic meaning. These vectors allow similarity search — texts with similar meanings
+will have vectors that are close together in the embedding space.
+
+=== CHUNK 14 ===
+Text embeddings are numerical representations of text used in LangChain for semantic
+similarity. When two pieces of text are semantically similar, their embedding vectors
+will be close in the vector space, enabling effective retrieval.
+
+=== CHUNK 15 ===
+LangChain uses embedding models like OpenAI's text-embedding-ada-002 or open-source models
+from HuggingFace to convert documents into vectors. These embeddings capture the semantic
+content of text for use in similarity search and clustering.
+
+=== CHUNK 16 ===
+Memory in LangChain allows conversational chains to remember past interactions. Types of
+memory include ConversationBufferMemory (stores full history), ConversationSummaryMemory
+(stores a summary), and ConversationWindowMemory (keeps last N turns).
+
+=== CHUNK 17 ===
+LangChain provides several memory types for chatbots: Buffer Memory stores the entire
+conversation history, Summary Memory condenses past exchanges into a summary, and Window
+Memory retains only the most recent exchanges to manage context length.
+
+=== CHUNK 18 ===
+Conversation memory in LangChain helps LLMs maintain context across multiple turns.
+ConversationBufferMemory saves all messages, while ConversationSummaryMemory summarizes
+older parts of the conversation to fit within the model's context window.
+
+=== CHUNK 19 ===
+LangChain Expression Language (LCEL) is a declarative syntax for composing chains using
+the pipe operator (|). It supports streaming, async execution, and parallel processing,
+making it the modern way to build LangChain pipelines.
+
+=== CHUNK 20 ===
+LCEL (LangChain Expression Language) uses the | operator to chain components like prompts,
+LLMs, and output parsers. It natively supports async, streaming, and batch operations,
+replacing the older sequential chain approach.
+
+=== CHUNK 21 ===
+The LangChain Expression Language lets developers compose modular pipelines using a pipe
+syntax. Components such as retrievers, prompt templates, LLMs, and parsers can be chained
+together cleanly and support parallel execution and streaming out of the box.
+
+=== CHUNK 22 ===
+Hybrid Search in LangChain combines dense vector search (semantic) with sparse keyword
+search (BM25). The results from both methods are merged using techniques like Reciprocal
+Rank Fusion (RRF) to improve retrieval quality over either method alone.
+
+=== CHUNK 23 ===
+LangChain supports hybrid retrieval by combining BM25 sparse retrieval with dense semantic
+search. Reciprocal Rank Fusion merges the ranked lists from both approaches, ensuring
+that documents relevant by both keyword match and semantic similarity are ranked highest.
+
+=== CHUNK 24 ===
+In LangChain's hybrid search setup, sparse retrieval handles exact keyword matches while
+dense retrieval captures semantic relationships. RRF (Reciprocal Rank Fusion) is used
+to combine these two ranked lists into a single, improved result set.
+
+=== CHUNK 25 ===
+LangSmith is LangChain's observability and debugging platform. It allows developers to
+trace every step of a chain or agent run, inspect inputs and outputs, evaluate retrieval
+quality, and monitor production deployments in real time.
+
+=== CHUNK 26 ===
+Prompt Templates in LangChain allow developers to define reusable prompts with dynamic
+variables. They support few-shot examples, system messages, and human/AI message formatting,
+making it easy to standardize how instructions are sent to the LLM.
+
+=== CHUNK 27 ===
+LangChain's PromptTemplate class enables parameterized prompts where variables are injected
+at runtime. ChatPromptTemplate supports multi-turn formats with system, human, and AI
+message roles, which is essential for building structured chatbot interactions.
+
+=== CHUNK 28 ===
+Output Parsers in LangChain transform raw LLM text output into structured formats. The
+PydanticOutputParser enforces a schema, StrOutputParser returns plain text, and
+CommaSeparatedListOutputParser splits output into a Python list.
+
+=== CHUNK 29 ===
+Maximal Marginal Relevance (MMR) is a re-ranking algorithm used in LangChain's retrieval
+step. After fetching the top-K candidates, MMR selects documents that are both relevant
+to the query and diverse from each other, reducing redundancy in the context passed to the LLM.
+
+=== CHUNK 30 ===
+LangChain's MMR retriever balances relevance and diversity. Given a query, it first
+retrieves a large candidate pool, then iteratively selects documents that maximize
+relevance to the query while minimizing similarity to already-selected documents.
+
+=== CHUNK 31 ===
+Document Loaders in LangChain ingest data from various sources: PDFs, web pages, Notion,
+Google Drive, databases, and more. After loading, documents are split into chunks using
+Text Splitters before being embedded and stored in a vector store.
+
+=== CHUNK 32 ===
+Text Splitters in LangChain break large documents into smaller chunks suitable for
+embedding. The RecursiveCharacterTextSplitter is most commonly used, splitting text
+by paragraphs, sentences, and then characters while maintaining semantic coherence.
+
+=== CHUNK 33 ===
+LangGraph is a LangChain extension for building stateful, graph-based agent workflows.
+Unlike linear chains, LangGraph allows cycles, conditional branching, and persistent state,
+making it suitable for complex multi-agent orchestration and long-running tasks.
