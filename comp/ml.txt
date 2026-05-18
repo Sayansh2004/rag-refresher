@@ -1,0 +1,227 @@
+Machine Learning is a branch of Artificial Intelligence that enables systems to learn patterns from data and make predictions or decisions without being explicitly programmed. Instead of writing hardcoded rules, machine learning models learn relationships from historical examples and use those learned patterns to generalize on unseen data.
+
+Machine Learning is mainly divided into Supervised Learning, Unsupervised Learning, Semi-Supervised Learning, and Reinforcement Learning.
+
+Supervised Learning uses labeled datasets where both inputs and outputs are already known. The model learns the mapping between features and target values. Supervised learning problems are mainly divided into Classification and Regression.
+
+Classification algorithms predict discrete categories or classes. Examples include spam detection, fraud detection, sentiment analysis, disease prediction, and image classification.
+
+Regression algorithms predict continuous numerical values such as house prices, stock prices, temperature values, and sales forecasts.
+
+Linear Regression is one of the simplest and most interpretable machine learning algorithms. It models the relationship between input features and a continuous target variable using a linear equation.
+
+Linear Regression performs well when relationships between variables are approximately linear. It is commonly used for house price prediction, sales forecasting, demand prediction, and trend analysis.
+
+One major advantage of Linear Regression is interpretability. The coefficients explain how strongly each feature affects the output prediction.
+
+Linear Regression is computationally efficient and easy to train even on large datasets. However, it struggles with highly nonlinear relationships and is sensitive to outliers.
+
+Polynomial Regression extends Linear Regression by introducing polynomial features to model curved relationships.
+
+Logistic Regression is used for classification tasks despite having the term regression in its name. It predicts probabilities and is commonly used in binary classification problems such as spam detection and fraud prediction.
+
+Logistic Regression is highly interpretable and computationally efficient. It works well when decision boundaries are approximately linear.
+
+Decision Trees are tree-based algorithms that split datasets into branches using feature conditions. They are easy to visualize and interpret.
+
+Decision Trees can be used for both classification and regression tasks. They work well when relationships between variables are nonlinear and feature interactions are important.
+
+However, Decision Trees are prone to overfitting if allowed to grow excessively deep.
+
+Random Forest is an ensemble learning algorithm that combines multiple Decision Trees. Each tree learns from different random subsets of data and features.
+
+Random Forest reduces overfitting and improves generalization compared to individual Decision Trees. It performs extremely well on structured tabular datasets.
+
+Random Forest handles both categorical and numerical features effectively and is robust against noisy data.
+
+Gradient Boosting algorithms such as XGBoost, LightGBM, and CatBoost are among the most powerful algorithms for structured tabular datasets.
+
+Gradient Boosting works by sequentially improving weak learners and focusing on previous prediction errors.
+
+XGBoost is widely used in machine learning competitions and enterprise systems because of its high predictive accuracy.
+
+LightGBM is optimized for high-speed training and low memory usage. It is suitable for large-scale datasets and real-time inference systems.
+
+CatBoost is designed to handle categorical features efficiently and reduces the need for extensive preprocessing.
+
+Support Vector Machines are powerful supervised learning algorithms used for classification and regression tasks.
+
+SVM attempts to find the optimal boundary that separates different classes with maximum margin.
+
+SVM performs well on smaller high-dimensional datasets and works effectively when clear class separation exists.
+
+However, SVM becomes computationally expensive for very large datasets.
+
+K-Nearest Neighbors is a simple lazy learning algorithm that predicts outputs based on the nearest neighboring data points.
+
+KNN works well for smaller datasets and pattern recognition problems. However, it becomes slow for large datasets because predictions require distance calculations against all training points.
+
+Naive Bayes is a probabilistic machine learning algorithm based on Bayes Theorem.
+
+Naive Bayes assumes feature independence and performs surprisingly well in text classification tasks such as spam filtering and sentiment analysis.
+
+Naive Bayes is computationally efficient and performs well on high-dimensional sparse datasets.
+
+Ensemble Learning combines multiple models to improve overall predictive performance and robustness.
+
+Bagging reduces variance by training multiple models independently. Random Forest is a popular Bagging algorithm.
+
+Boosting reduces bias by training models sequentially while focusing on previous mistakes. XGBoost and AdaBoost are examples of Boosting algorithms.
+
+Unsupervised Learning works with unlabeled datasets where target outputs are unavailable. The goal is to discover hidden structures and patterns in the data.
+
+Clustering algorithms group similar data points together based on feature similarity.
+
+K-Means Clustering is one of the most popular clustering algorithms. It partitions data into clusters using centroid-based optimization.
+
+K-Means is widely used in customer segmentation, recommendation systems, and market analysis.
+
+However, K-Means struggles with irregular cluster shapes and requires the number of clusters to be predefined.
+
+DBSCAN is a density-based clustering algorithm capable of discovering irregular cluster structures and detecting noise points.
+
+Hierarchical Clustering creates nested clusters and is useful for visualizing relationships between data points.
+
+Dimensionality Reduction techniques reduce the number of features while preserving important information.
+
+Principal Component Analysis transforms high-dimensional data into lower-dimensional representations while maximizing variance preservation.
+
+PCA is commonly used for visualization, compression, noise reduction, and feature engineering.
+
+Autoencoders are neural network architectures used for dimensionality reduction and anomaly detection.
+
+Anomaly Detection algorithms identify unusual or rare patterns in datasets.
+
+Isolation Forest is a popular anomaly detection algorithm that isolates anomalies through recursive partitioning.
+
+Anomaly detection is commonly used in fraud detection, cybersecurity, manufacturing quality control, and system monitoring.
+
+Neural Networks are machine learning models inspired by biological neurons. They consist of interconnected layers capable of learning complex patterns.
+
+Deep Learning refers to neural networks with multiple hidden layers.
+
+Deep Learning performs exceptionally well on unstructured data such as images, audio, text, and videos.
+
+Convolutional Neural Networks are specialized neural networks for image processing tasks.
+
+CNNs automatically learn spatial hierarchies and visual patterns from images.
+
+CNNs are widely used in facial recognition, medical imaging, object detection, and autonomous driving systems.
+
+Recurrent Neural Networks are designed for sequential data processing.
+
+RNNs maintain memory of previous inputs and are useful for time-series forecasting, language modeling, and speech recognition.
+
+Traditional RNNs suffer from vanishing gradient problems when processing long sequences.
+
+LSTM and GRU architectures solve long-term dependency problems using gating mechanisms.
+
+LSTMs are widely used for text generation, stock prediction, sequential recommendation systems, and speech processing.
+
+Transformers are modern deep learning architectures based on self-attention mechanisms.
+
+Transformers process relationships between tokens in parallel and outperform traditional sequential models on many NLP tasks.
+
+BERT is a transformer encoder model mainly used for language understanding tasks such as question answering and text classification.
+
+GPT models are transformer decoder models specialized for text generation and conversational AI.
+
+Transformers are the foundation of Large Language Models used in modern AI assistants.
+
+Reinforcement Learning is a learning paradigm where an agent interacts with an environment and learns through rewards and penalties.
+
+The agent continuously improves its policy to maximize cumulative rewards.
+
+Reinforcement Learning is widely used in robotics, gaming, recommendation systems, and autonomous systems.
+
+Q-Learning is a reinforcement learning algorithm that learns optimal actions using reward estimation.
+
+Deep Reinforcement Learning combines reinforcement learning with deep neural networks.
+
+Feature Engineering is the process of selecting, transforming, and creating useful features from raw data.
+
+Good feature engineering often improves model performance more than changing algorithms.
+
+Feature Scaling is important for algorithms sensitive to numerical ranges such as SVM and KNN.
+
+Normalization rescales features into fixed ranges while Standardization transforms data into zero mean and unit variance distributions.
+
+Overfitting occurs when a model memorizes training data instead of learning generalized patterns.
+
+Underfitting occurs when a model is too simple to capture underlying relationships in the data.
+
+Regularization techniques help reduce overfitting.
+
+L1 Regularization encourages sparsity by forcing some coefficients to become zero.
+
+L2 Regularization shrinks coefficient magnitudes while preserving all features.
+
+Cross Validation is used to evaluate machine learning models reliably across multiple dataset splits.
+
+Stratified Cross Validation preserves class distributions across folds and is useful for imbalanced datasets.
+
+Classification models are commonly evaluated using Accuracy, Precision, Recall, F1 Score, and ROC-AUC.
+
+Accuracy measures overall prediction correctness.
+
+Precision measures how many predicted positive samples are actually positive.
+
+Recall measures how many actual positive samples are correctly identified.
+
+F1 Score balances Precision and Recall.
+
+Regression models are evaluated using Mean Absolute Error, Mean Squared Error, Root Mean Squared Error, and R-Squared metrics.
+
+Hyperparameter Tuning improves model performance by searching for optimal parameter configurations.
+
+Grid Search evaluates all possible parameter combinations exhaustively.
+
+Random Search samples parameter combinations randomly and is computationally more efficient for large search spaces.
+
+Bayesian Optimization uses probabilistic methods to search parameter spaces intelligently.
+
+Transfer Learning reuses pre-trained models for new tasks.
+
+Transfer Learning significantly reduces training time and dataset requirements in computer vision and NLP applications.
+
+Recommendation Systems use machine learning to suggest relevant products, movies, songs, or content to users.
+
+Collaborative Filtering recommends items based on user interaction similarities.
+
+Content-Based Filtering recommends items based on feature similarities.
+
+Hybrid Recommendation Systems combine collaborative and content-based methods.
+
+Natural Language Processing focuses on enabling machines to understand and generate human language.
+
+Machine learning algorithms used in NLP include Naive Bayes, Transformers, LSTMs, and Large Language Models.
+
+Computer Vision focuses on enabling systems to understand images and videos.
+
+CNNs and Vision Transformers are widely used in Computer Vision applications.
+
+Choosing the correct machine learning algorithm depends on factors such as dataset size, feature complexity, interpretability requirements, computational resources, and latency constraints.
+
+Linear Regression is suitable when relationships are approximately linear and interpretability is important.
+
+Logistic Regression is suitable for simple classification tasks requiring explainability.
+
+Decision Trees are useful when interpretability and nonlinear relationships matter.
+
+Random Forest performs well on structured tabular data and reduces overfitting.
+
+XGBoost and LightGBM are excellent choices for high-performance tabular prediction tasks.
+
+SVM works well for smaller high-dimensional datasets.
+
+KNN is useful for simple similarity-based predictions on small datasets.
+
+CNNs are ideal for image processing tasks.
+
+LSTMs and Transformers are useful for sequential and language-related tasks.
+
+Isolation Forest is suitable for anomaly detection tasks.
+
+Reinforcement Learning is suitable when systems must learn through interaction and rewards.
+
+Machine Learning success depends not only on algorithm selection but also on data quality, preprocessing, feature engineering, evaluation strategies, and deployment considerations.
