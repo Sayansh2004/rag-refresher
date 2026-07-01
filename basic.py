@@ -61,8 +61,8 @@ async def main():
 
             if tool_check.tool_calls:
                 print("tool is called")
-                tool_response=get_user_details.invoke(tool_check.tool_calls[0].args)
-                conversation_history.append(ToolMessage(content=tool_response, tool_name=tool_check.tool_calls[0].name))
+                tool_response=get_user_details.invoke(tool_check.tool_calls[0]["args"])
+                conversation_history.append(ToolMessage(content=tool_response, tool_call_id=tool_check.tool_calls[0]["id"]))
                 
                 full_response=""
                 print("AI : ",end="",flush=True)
