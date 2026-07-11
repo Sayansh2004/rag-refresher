@@ -1,0 +1,173 @@
+# Data Structures Reference Notes
+
+## Chapter 1: Arrays
+
+### 1.1 Definition
+An array is a collection of elements stored at contiguous memory locations. Each element can be accessed directly using an index, starting from 0 in most languages. Arrays have a fixed size decided at the time of creation in statically typed languages, though dynamic arrays can grow as needed.
+
+### 1.2 Operations
+- **Access**: Retrieve an element using its index.
+- **Traversal**: Visit each element one by one, typically using a loop.
+- **Insertion**: Add a new element, which may require shifting subsequent elements.
+- **Deletion**: Remove an element, which may require shifting subsequent elements to fill the gap.
+- **Search**: Look for a given value, either sequentially or, if sorted, using binary search.
+
+### 1.3 Use Cases
+Arrays are used when the number of elements is known in advance and random access by index is important — for example, lookup tables, matrices, and image pixel grids.
+
+### 1.4 Complexity Analysis
+| Operation | Time Complexity | Space Complexity |
+|---|---|---|
+| Access | O(1) | O(1) |
+| Search (unsorted) | O(n) | O(1) |
+| Search (sorted, binary) | O(log n) | O(1) |
+| Insertion (end) | O(1) amortized | O(1) |
+| Insertion (middle/start) | O(n) | O(1) |
+| Deletion (end) | O(1) | O(1) |
+| Deletion (middle/start) | O(n) | O(1) |
+
+---
+
+## Chapter 2: Linked Lists
+
+### 2.1 Definition
+A linked list is a linear data structure where elements, called nodes, are stored non-contiguously in memory. Each node holds a value and a reference (pointer) to the next node in the sequence. Unlike arrays, linked lists do not require contiguous memory and can grow or shrink dynamically without reallocation.
+
+### 2.2 Types
+- **Singly Linked List**: Each node points only to the next node.
+- **Doubly Linked List**: Each node points to both the next and previous nodes.
+- **Circular Linked List**: The last node points back to the first node, forming a loop.
+
+### 2.3 Operations
+- **Traversal**: Start from the head node and follow pointers until reaching the end.
+- **Insertion**: Add a node at the head, tail, or a given position by adjusting pointers — no shifting of other elements is needed.
+- **Deletion**: Remove a node by rerouting the pointer of its predecessor to its successor.
+- **Search**: Traverse from the head, comparing each node's value until found or the list ends.
+
+### 2.4 Use Cases
+Linked lists are preferred when frequent insertions and deletions are needed and random access is not a priority — for example, implementing stacks, queues, and undo functionality in applications.
+
+### 2.5 Example (Singly Linked List, Python)
+```python
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert_at_head(self, value):
+        node = Node(value)
+        node.next = self.head
+        self.head = node
+```
+
+---
+
+## Chapter 3: Stacks
+
+### 3.1 Definition
+A stack is a linear data structure that follows the Last-In-First-Out (LIFO) principle. The last element added to the stack is the first one to be removed. Think of a stack of plates — you add and remove from the top only.
+
+### 3.2 Operations
+- **Push**: Add an element to the top of the stack.
+- **Pop**: Remove the element from the top of the stack.
+- **Peek/Top**: View the top element without removing it.
+- **isEmpty**: Check whether the stack has any elements.
+
+### 3.3 Use Cases
+Stacks are used in function call management (call stack), expression evaluation, undo mechanisms in editors, and backtracking algorithms like maze solving and depth-first search.
+
+### 3.4 Implementation Notes
+Stacks can be implemented using arrays (fixed size, fast access) or linked lists (dynamic size, no resizing needed). Most languages provide a built-in stack via an array-backed list or a dedicated Stack class.
+
+---
+
+## Chapter 4: Queues
+
+### 4.1 Definition
+A queue is a linear data structure that follows the First-In-First-Out (FIFO) principle. The first element added is the first one removed, similar to a line of people waiting.
+
+### 4.2 Types
+- **Simple Queue**: Standard FIFO behavior.
+- **Circular Queue**: The last position connects back to the first, allowing efficient reuse of freed slots.
+- **Priority Queue**: Elements are dequeued based on priority rather than insertion order.
+- **Deque (Double-Ended Queue)**: Elements can be added or removed from both ends.
+
+### 4.3 Operations
+- **Enqueue**: Add an element to the rear of the queue.
+- **Dequeue**: Remove an element from the front of the queue.
+- **Front/Peek**: View the front element without removing it.
+- **isEmpty**: Check whether the queue has any elements.
+
+### 4.4 Use Cases
+Queues are used in task scheduling, print job management, breadth-first search, and handling requests in web servers.
+
+---
+
+## Chapter 5: Binary Search Trees
+
+### 5.1 Definition
+A Binary Search Tree (BST) is a hierarchical data structure in which each node has at most two children, referred to as the left and right child. For every node, all values in the left subtree are smaller than the node's value, and all values in the right subtree are greater.
+
+### 5.2 Operations
+- **Insertion**: Compare the new value against nodes starting from the root, moving left or right until an empty spot is found.
+- **Search**: Compare the target value against nodes starting from the root, moving left or right based on comparison, until found or a leaf is reached.
+- **Deletion**: Remove a node, handling three cases — no children, one child, or two children (the latter requires finding an in-order successor or predecessor).
+- **Traversal**: Visit nodes in-order, pre-order, or post-order depending on the desired sequence.
+
+### 5.3 Balancing
+An unbalanced BST can degrade to a structure resembling a linked list if elements are inserted in sorted order, which harms performance. Self-balancing variants like AVL trees and Red-Black trees maintain a balanced height automatically.
+
+### 5.4 Use Cases
+BSTs are used for maintaining sorted data with efficient lookup, insertion, and deletion — for example, in database indexing and implementing ordered maps/sets.
+
+---
+
+## Chapter 6: Complexity Reference
+
+This chapter consolidates time and space complexity for structures introduced earlier. Note that some entries assume a balanced structure; skewed trees behave differently (see 5.3).
+
+### 6.1 Linked List Complexity
+| Operation | Time Complexity | Space Complexity |
+|---|---|---|
+| Access (by index) | O(n) | O(1) |
+| Search | O(n) | O(1) |
+| Insertion (at head) | O(1) | O(1) |
+| Insertion (at tail, no tail pointer) | O(n) | O(1) |
+| Insertion (at tail, with tail pointer) | O(1) | O(1) |
+| Deletion (at head) | O(1) | O(1) |
+| Deletion (arbitrary node, singly linked) | O(n) | O(1) |
+
+### 6.2 Stack Complexity
+| Operation | Time Complexity | Space Complexity |
+|---|---|---|
+| Push | O(1) | O(1) |
+| Pop | O(1) | O(1) |
+| Peek | O(1) | O(1) |
+
+### 6.3 Queue Complexity
+| Operation | Time Complexity | Space Complexity |
+|---|---|---|
+| Enqueue | O(1) | O(1) |
+| Dequeue | O(1) | O(1) |
+| Peek | O(1) | O(1) |
+
+### 6.4 Binary Search Tree Complexity
+| Operation | Average Case | Worst Case (Skewed Tree) |
+|---|---|---|
+| Search | O(log n) | O(n) |
+| Insertion | O(log n) | O(n) |
+| Deletion | O(log n) | O(n) |
+
+---
+
+## Chapter 7: Choosing the Right Structure
+
+### 7.1 Decision Factors
+When choosing between these structures, consider: how often you need random access, how frequently elements are inserted or deleted, whether order matters, and whether the data needs to stay sorted.
+
+### 7.2 Quick Comparison
+Arrays favor fast access but slow middle insertion/deletion. Linked lists favor fast insertion/deletion at known positions but slow access and search. Stacks and queues are restricted-access structures suited to specific access patterns (LIFO/FIFO). BSTs favor sorted data with logarithmic operations, provided the tree stays balanced.

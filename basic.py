@@ -4,10 +4,12 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import BaseMessage, SystemMessage, HumanMessage, AIMessage, ToolMessage
 from langchain.tools import tool
 from dotenv import load_dotenv
+from loc_cache import LocalCache
+import time
 load_dotenv()
 
 llm = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"), model_name="gpt-4o-mini", temperature=0.7)
-
+local_cache = LocalCache()
 details_map={
     "aakash":{
         "name":"Aakash",
@@ -63,62 +65,72 @@ async def main():
 
     while True:
         user_input=input("You  : ")
-        conversation_history.append(HumanMessage(content=user_input))
-        tool_calls=0
-        if user_input.lower() in ["exit","quit","b"]:
-            print("Exiting the conversation. Goodbye!")
-            break
+        
+        start_time=time.perf_counter()
+        cached_response = local_cache.get(user_input)
 
-        tool_check=await llm_with_tools.ainvoke(conversation_history)
-        conversation_history.append(tool_check)
-        try:
+        if cached_response is not None:
+            print("Cache hit")
+            print("AI:", cached_response)
+            print(f"Total time: {time.perf_counter()-start_time:.4f}s")
+            continue
+        else:
+            print("cache miss")
+            conversation_history.append(HumanMessage(content=user_input))
+            tool_calls=0
+            if user_input.lower() in ["exit","quit","b"]:
+                print("Exiting the conversation. Goodbye!")
+                break
 
-            if tool_check.tool_calls:
+            tool_check=await llm_with_tools.ainvoke(conversation_history)
+            conversation_history.append(tool_check)
+            try:
+                if tool_check.tool_calls:
+                    async def tool_call_executor(tool_name, tool_id, tool_args):
+                        tool_function = tool_map.get(tool_name)
+                        if tool_function:
+                            tool_response = tool_function.invoke(tool_args)
+                            conversation_history.append(ToolMessage(content=tool_response, tool_call_id=tool_id))
+                        else:
+                            print(f"Tool {tool_name} not found.")
+                            conversation_history.append(AIMessage(content=f"Sorry, I couldn't find the tool named {tool_name}. Please try again."))
 
-                async def tool_call_executor(tool_name,tool_id,tool_args):
-                    tool_function=tool_map.get(tool_name)
-                    if tool_function:
-                        tool_response=tool_function.invoke(tool_args)
-                        conversation_history.append(ToolMessage(content=tool_response, tool_call_id=tool_id))
-                    else:
-                        print(f"Tool {tool_name} not found.")
-                        conversation_history.append(AIMessage(content=f"Sorry, I couldn't find the tool named {tool_name}. Please try again."))
+                    for tool_call in tool_check.tool_calls:
+                        tool_id = tool_call["id"]
+                        tool_args = tool_call["args"]
+                        tool_name = tool_call["name"]
+                        tool_calls += 1
+                        await tool_call_executor(tool_name, tool_id, tool_args)
 
-
-                for tool_call in tool_check.tool_calls:
-                    tool_id=tool_call["id"]
-                    tool_args=tool_call["args"]
-                    tool_name=tool_call["name"]
-                    tool_calls+=1
-                    await tool_call_executor(tool_name,tool_id,tool_args)
-
-                
-                
-        except Exception as e:
-            
+            except Exception as e:
                 print(f"Error while calling the tool: {e}")
                 conversation_history.append(AIMessage(content="Sorry, there was an error while trying to fetch the user details. Please try again later."))
 
-         
-        else:
-            full_response=""
-            print("AI : ",end="",flush=True)
-            async for chunk in llm_with_tools.astream(conversation_history):
-                    full_response+=chunk.content
-                    
-                    print(f" {chunk.content}",end="",flush=True)
-            print()  
-            conversation_history.append(AIMessage(content=full_response))
+            else:
+                full_response = ""
+                print("AI : ", end="", flush=True)
 
-        finally:
-             if tool_calls>0:
-                print("Tool calls made in this iteration:", tool_calls)
+                if tool_calls > 0:
+                    # Tools were run -> ask the model to produce the real answer using tool results
+                    async for chunk in llm_with_tools.astream(conversation_history):
+                        full_response += chunk.content or ""
+                        print(chunk.content or "", end="", flush=True)
+                    print()
+                    conversation_history.append(AIMessage(content=full_response))
+                else:
+                    # No tool call -> tool_check.content is already the final answer
+                    full_response = tool_check.content
+                    print(full_response)
+                    # tool_check is already appended to conversation_history, no need to append again
 
-             else:
-                print("No tool calls made in this iteration.")
+                local_cache.set(user_input, full_response)
 
-    
-
+            finally:
+                if tool_calls > 0:
+                    print("Tool calls made in this iteration:", tool_calls)
+                else:
+                    print("No tool calls made in this iteration.")
+                print(f"Total time taken : {time.perf_counter()-start_time:.2f} seconds ")
 
 
 
