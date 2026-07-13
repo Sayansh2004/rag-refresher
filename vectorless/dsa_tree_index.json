@@ -1,0 +1,261 @@
+{
+  "title": "root",
+  "level": 0,
+  "content": "",
+  "children": [
+    {
+      "title": "Data Structures Reference Notes",
+      "level": 1,
+      "content": "",
+      "children": [
+        {
+          "title": "Chapter 1: Arrays",
+          "level": 2,
+          "content": "",
+          "children": [
+            {
+              "title": "1.1 Definition",
+              "level": 3,
+              "content": "An array is a collection of elements stored at contiguous memory locations. Each element can be accessed directly using an index, starting from 0 in most languages. Arrays have a fixed size decided at the time of creation in statically typed languages, though dynamic arrays can grow as needed.",
+              "children": [],
+              "summary": "This section defines an array as a collection of elements stored in contiguous memory locations, accessible via an index starting from 0. It also distinguishes between statically sized arrays, which have a fixed size upon creation, and dynamic arrays, which can grow as needed."
+            },
+            {
+              "title": "1.2 Operations",
+              "level": 3,
+              "content": "- **Access**: Retrieve an element using its index.\n- **Traversal**: Visit each element one by one, typically using a loop.\n- **Insertion**: Add a new element, which may require shifting subsequent elements.\n- **Deletion**: Remove an element, which may require shifting subsequent elements to fill the gap.\n- **Search**: Look for a given value, either sequentially or, if sorted, using binary search.",
+              "children": [],
+              "summary": "Section 1.2 covers key operations on data structures, including accessing elements by index, traversing elements, inserting and deleting elements (which may involve shifting), and searching for values using sequential or binary search methods."
+            },
+            {
+              "title": "1.3 Use Cases",
+              "level": 3,
+              "content": "Arrays are used when the number of elements is known in advance and random access by index is important \u2014 for example, lookup tables, matrices, and image pixel grids.",
+              "children": [],
+              "summary": "This section outlines the use cases for arrays, emphasizing their suitability for scenarios where the number of elements is predetermined and random access by index is crucial, such as in lookup tables, matrices, and image pixel grids."
+            },
+            {
+              "title": "1.4 Complexity Analysis",
+              "level": 3,
+              "content": "| Operation | Time Complexity | Space Complexity |\n|---|---|---|\n| Access | O(1) | O(1) |\n| Search (unsorted) | O(n) | O(1) |\n| Search (sorted, binary) | O(log n) | O(1) |\n| Insertion (end) | O(1) amortized | O(1) |\n| Insertion (middle/start) | O(n) | O(1) |\n| Deletion (end) | O(1) | O(1) |\n| Deletion (middle/start) | O(n) | O(1) |\n\n---",
+              "children": [],
+              "summary": "Section 1.4 provides a detailed complexity analysis of various operations on data structures, including access, search (both unsorted and sorted), insertion (at different positions), and deletion (at different positions), outlining their respective time and space complexities. Key operations include constant time complexities for access and deletion at the end, while search and insertion at the middle/start exhibit linear time complexities."
+            }
+          ],
+          "summary": "No direct content \u2014 see subsections."
+        },
+        {
+          "title": "Chapter 2: Linked Lists",
+          "level": 2,
+          "content": "",
+          "children": [
+            {
+              "title": "2.1 Definition",
+              "level": 3,
+              "content": "A linked list is a linear data structure where elements, called nodes, are stored non-contiguously in memory. Each node holds a value and a reference (pointer) to the next node in the sequence. Unlike arrays, linked lists do not require contiguous memory and can grow or shrink dynamically without reallocation.",
+              "children": [],
+              "summary": "This section defines a linked list as a linear data structure composed of non-contiguous nodes, each containing a value and a pointer to the next node, highlighting its dynamic memory allocation capabilities compared to arrays."
+            },
+            {
+              "title": "2.2 Types",
+              "level": 3,
+              "content": "- **Singly Linked List**: Each node points only to the next node.\n- **Doubly Linked List**: Each node points to both the next and previous nodes.\n- **Circular Linked List**: The last node points back to the first node, forming a loop.",
+              "children": [],
+              "summary": "Section 2.2 outlines three types of linked lists: Singly Linked List, where each node points to the next; Doubly Linked List, where nodes point to both the next and previous nodes; and Circular Linked List, where the last node connects back to the first, creating a loop."
+            },
+            {
+              "title": "2.3 Operations",
+              "level": 3,
+              "content": "- **Traversal**: Start from the head node and follow pointers until reaching the end.\n- **Insertion**: Add a node at the head, tail, or a given position by adjusting pointers \u2014 no shifting of other elements is needed.\n- **Deletion**: Remove a node by rerouting the pointer of its predecessor to its successor.\n- **Search**: Traverse from the head, comparing each node's value until found or the list ends.",
+              "children": [],
+              "summary": "Section 2.3 covers the fundamental operations of a linked list, including traversal, insertion at various positions, deletion by pointer rerouting, and searching for a node by comparing values during traversal."
+            },
+            {
+              "title": "2.4 Use Cases",
+              "level": 3,
+              "content": "Linked lists are preferred when frequent insertions and deletions are needed and random access is not a priority \u2014 for example, implementing stacks, queues, and undo functionality in applications.",
+              "children": [],
+              "summary": "This section outlines the use cases for linked lists, highlighting their advantages in scenarios requiring frequent insertions and deletions, such as in the implementation of stacks, queues, and undo functionality in applications."
+            },
+            {
+              "title": "2.5 Example (Singly Linked List, Python)",
+              "level": 3,
+              "content": "```python\nclass Node:\n    def __init__(self, value):\n        self.value = value\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n\n    def insert_at_head(self, value):\n        node = Node(value)\n        node.next = self.head\n        self.head = node\n```\n\n---",
+              "children": [],
+              "summary": "This section provides an example of implementing a singly linked list in Python, including the definition of a `Node` class for individual elements and a `LinkedList` class with a method to insert new nodes at the head of the list."
+            }
+          ],
+          "summary": "No direct content \u2014 see subsections."
+        },
+        {
+          "title": "Chapter 3: Stacks",
+          "level": 2,
+          "content": "",
+          "children": [
+            {
+              "title": "3.1 Definition",
+              "level": 3,
+              "content": "A stack is a linear data structure that follows the Last-In-First-Out (LIFO) principle. The last element added to the stack is the first one to be removed. Think of a stack of plates \u2014 you add and remove from the top only.",
+              "children": [],
+              "summary": "This section defines a stack as a linear data structure that operates on the Last-In-First-Out (LIFO) principle, where the most recently added element is the first to be removed, illustrated by the analogy of a stack of plates."
+            },
+            {
+              "title": "3.2 Operations",
+              "level": 3,
+              "content": "- **Push**: Add an element to the top of the stack.\n- **Pop**: Remove the element from the top of the stack.\n- **Peek/Top**: View the top element without removing it.\n- **isEmpty**: Check whether the stack has any elements.",
+              "children": [],
+              "summary": "Section 3.2 outlines the fundamental operations of a stack data structure, including adding an element (Push), removing the top element (Pop), viewing the top element without removal (Peek/Top), and checking if the stack is empty (isEmpty)."
+            },
+            {
+              "title": "3.3 Use Cases",
+              "level": 3,
+              "content": "Stacks are used in function call management (call stack), expression evaluation, undo mechanisms in editors, and backtracking algorithms like maze solving and depth-first search.",
+              "children": [],
+              "summary": "This section outlines various use cases for stacks, including their roles in function call management through call stacks, expression evaluation, implementing undo mechanisms in editors, and facilitating backtracking algorithms such as maze solving and depth-first search."
+            },
+            {
+              "title": "3.4 Implementation Notes",
+              "level": 3,
+              "content": "Stacks can be implemented using arrays (fixed size, fast access) or linked lists (dynamic size, no resizing needed). Most languages provide a built-in stack via an array-backed list or a dedicated Stack class.\n\n---",
+              "children": [],
+              "summary": "This section covers the implementation of stacks using arrays and linked lists, highlighting the advantages of each method, such as fixed size and fast access for arrays versus dynamic size for linked lists. It also notes that most programming languages offer built-in stack implementations, either through array-backed lists or dedicated Stack classes."
+            }
+          ],
+          "summary": "No direct content \u2014 see subsections."
+        },
+        {
+          "title": "Chapter 4: Queues",
+          "level": 2,
+          "content": "",
+          "children": [
+            {
+              "title": "4.1 Definition",
+              "level": 3,
+              "content": "A queue is a linear data structure that follows the First-In-First-Out (FIFO) principle. The first element added is the first one removed, similar to a line of people waiting.",
+              "children": [],
+              "summary": "This section defines a queue as a linear data structure that operates on the First-In-First-Out (FIFO) principle, where the first element added is the first one removed, analogous to a line of people waiting."
+            },
+            {
+              "title": "4.2 Types",
+              "level": 3,
+              "content": "- **Simple Queue**: Standard FIFO behavior.\n- **Circular Queue**: The last position connects back to the first, allowing efficient reuse of freed slots.\n- **Priority Queue**: Elements are dequeued based on priority rather than insertion order.\n- **Deque (Double-Ended Queue)**: Elements can be added or removed from both ends.",
+              "children": [],
+              "summary": "Section 4.2 outlines four types of queues: Simple Queue (FIFO behavior), Circular Queue (efficient reuse of slots), Priority Queue (dequeueing based on priority), and Deque (elements can be added or removed from both ends)."
+            },
+            {
+              "title": "4.3 Operations",
+              "level": 3,
+              "content": "- **Enqueue**: Add an element to the rear of the queue.\n- **Dequeue**: Remove an element from the front of the queue.\n- **Front/Peek**: View the front element without removing it.\n- **isEmpty**: Check whether the queue has any elements.",
+              "children": [],
+              "summary": "Section 4.3 outlines the fundamental operations of a queue data structure, including Enqueue (adding an element to the rear), Dequeue (removing an element from the front), Front/Peek (viewing the front element without removal), and isEmpty (checking if the queue is empty)."
+            },
+            {
+              "title": "4.4 Use Cases",
+              "level": 3,
+              "content": "Queues are used in task scheduling, print job management, breadth-first search, and handling requests in web servers.\n\n---",
+              "children": [],
+              "summary": "This section outlines various use cases for queues, including their application in task scheduling, print job management, breadth-first search algorithms, and managing requests in web servers."
+            }
+          ],
+          "summary": "No direct content \u2014 see subsections."
+        },
+        {
+          "title": "Chapter 5: Binary Search Trees",
+          "level": 2,
+          "content": "",
+          "children": [
+            {
+              "title": "5.1 Definition",
+              "level": 3,
+              "content": "A Binary Search Tree (BST) is a hierarchical data structure in which each node has at most two children, referred to as the left and right child. For every node, all values in the left subtree are smaller than the node's value, and all values in the right subtree are greater.",
+              "children": [],
+              "summary": "This section defines a Binary Search Tree (BST) as a hierarchical data structure where each node can have up to two children, with the left child's values being smaller and the right child's values being greater than the node's value."
+            },
+            {
+              "title": "5.2 Operations",
+              "level": 3,
+              "content": "- **Insertion**: Compare the new value against nodes starting from the root, moving left or right until an empty spot is found.\n- **Search**: Compare the target value against nodes starting from the root, moving left or right based on comparison, until found or a leaf is reached.\n- **Deletion**: Remove a node, handling three cases \u2014 no children, one child, or two children (the latter requires finding an in-order successor or predecessor).\n- **Traversal**: Visit nodes in-order, pre-order, or post-order depending on the desired sequence.",
+              "children": [],
+              "summary": "Section 5.2 outlines the fundamental operations of a binary tree, including insertion (finding an empty spot based on comparisons), search (locating a target value through node comparisons), deletion (removing nodes with considerations for their children), and traversal methods (visiting nodes in in-order, pre-order, or post-order sequences)."
+            },
+            {
+              "title": "5.3 Balancing",
+              "level": 3,
+              "content": "An unbalanced BST can degrade to a structure resembling a linked list if elements are inserted in sorted order, which harms performance. Self-balancing variants like AVL trees and Red-Black trees maintain a balanced height automatically.",
+              "children": [],
+              "summary": "Section 5.3 addresses the issue of unbalanced binary search trees (BSTs) degrading into linked list-like structures due to sorted element insertion, and introduces self-balancing tree variants such as AVL trees and Red-Black trees that automatically maintain balanced heights to improve performance."
+            },
+            {
+              "title": "5.4 Use Cases",
+              "level": 3,
+              "content": "BSTs are used for maintaining sorted data with efficient lookup, insertion, and deletion \u2014 for example, in database indexing and implementing ordered maps/sets.\n\n---",
+              "children": [],
+              "summary": "This section outlines the use cases of Binary Search Trees (BSTs) in maintaining sorted data, highlighting their efficiency in lookup, insertion, and deletion operations, particularly in applications such as database indexing and the implementation of ordered maps and sets."
+            }
+          ],
+          "summary": "No direct content \u2014 see subsections."
+        },
+        {
+          "title": "Chapter 6: Complexity Reference",
+          "level": 2,
+          "content": "This chapter consolidates time and space complexity for structures introduced earlier. Note that some entries assume a balanced structure; skewed trees behave differently (see 5.3).",
+          "children": [
+            {
+              "title": "6.1 Linked List Complexity",
+              "level": 3,
+              "content": "| Operation | Time Complexity | Space Complexity |\n|---|---|---|\n| Access (by index) | O(n) | O(1) |\n| Search | O(n) | O(1) |\n| Insertion (at head) | O(1) | O(1) |\n| Insertion (at tail, no tail pointer) | O(n) | O(1) |\n| Insertion (at tail, with tail pointer) | O(1) | O(1) |\n| Deletion (at head) | O(1) | O(1) |\n| Deletion (arbitrary node, singly linked) | O(n) | O(1) |",
+              "children": [],
+              "summary": "Section 6.1 details the time and space complexities associated with various operations on linked lists, including access, search, insertion (at head, tail with and without a tail pointer), and deletion (at head and arbitrary nodes). Key complexities highlighted include O(n) for access and search, while insertion at the head and deletion at the head are O(1)."
+            },
+            {
+              "title": "6.2 Stack Complexity",
+              "level": 3,
+              "content": "| Operation | Time Complexity | Space Complexity |\n|---|---|---|\n| Push | O(1) | O(1) |\n| Pop | O(1) | O(1) |\n| Peek | O(1) | O(1) |",
+              "children": [],
+              "summary": "Section 6.2 outlines the time and space complexities for stack operations, specifically detailing that the Push, Pop, and Peek operations all have a time complexity of O(1) and a space complexity of O(1)."
+            },
+            {
+              "title": "6.3 Queue Complexity",
+              "level": 3,
+              "content": "| Operation | Time Complexity | Space Complexity |\n|---|---|---|\n| Enqueue | O(1) | O(1) |\n| Dequeue | O(1) | O(1) |\n| Peek | O(1) | O(1) |",
+              "children": [],
+              "summary": "Section 6.3 outlines the time and space complexities for queue operations, specifically detailing that the enqueue, dequeue, and peek operations all have a time complexity of O(1) and a space complexity of O(1)."
+            },
+            {
+              "title": "6.4 Binary Search Tree Complexity",
+              "level": 3,
+              "content": "| Operation | Average Case | Worst Case (Skewed Tree) |\n|---|---|---|\n| Search | O(log n) | O(n) |\n| Insertion | O(log n) | O(n) |\n| Deletion | O(log n) | O(n) |\n\n---",
+              "children": [],
+              "summary": "Section 6.4 outlines the time complexity of operations in a binary search tree, detailing the average case and worst-case scenarios for search, insertion, and deletion operations, with average cases being O(log n) and worst cases reaching O(n) in skewed trees."
+            }
+          ],
+          "summary": "Chapter 6 provides a comprehensive overview of time and space complexity for data structures discussed in previous chapters, with specific attention to the implications of balanced versus skewed structures, as referenced in section 5.3."
+        },
+        {
+          "title": "Chapter 7: Choosing the Right Structure",
+          "level": 2,
+          "content": "",
+          "children": [
+            {
+              "title": "7.1 Decision Factors",
+              "level": 3,
+              "content": "When choosing between these structures, consider: how often you need random access, how frequently elements are inserted or deleted, whether order matters, and whether the data needs to stay sorted.",
+              "children": [],
+              "summary": "This section outlines key decision factors for selecting data structures, including the frequency of random access, the rate of element insertion and deletion, the importance of order, and the necessity for maintaining sorted data."
+            },
+            {
+              "title": "7.2 Quick Comparison",
+              "level": 3,
+              "content": "Arrays favor fast access but slow middle insertion/deletion. Linked lists favor fast insertion/deletion at known positions but slow access and search. Stacks and queues are restricted-access structures suited to specific access patterns (LIFO/FIFO). BSTs favor sorted data with logarithmic operations, provided the tree stays balanced.",
+              "children": [],
+              "summary": "Section 7.2 compares various data structures: arrays provide quick access but are inefficient for middle insertions/deletions, linked lists excel in fast insertions/deletions at known positions but are slower for access and search, stacks and queues are designed for specific access patterns (LIFO/FIFO), and binary search trees (BSTs) support sorted data with logarithmic operations if kept balanced."
+            }
+          ],
+          "summary": "No direct content \u2014 see subsections."
+        }
+      ],
+      "summary": "No direct content \u2014 see subsections."
+    }
+  ],
+  "summary": "No direct content \u2014 see subsections."
+}
