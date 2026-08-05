@@ -1,0 +1,136 @@
+INTRODUCTION TO COMPUTING SYSTEMS
+A Short Course Textbook (Test Document for RAG Comparison)
+
+=================================================
+CHAPTER 1: NEURAL NETWORKS — THE BASICS
+=================================================
+
+1.1 What Is a Neural Network?
+
+A neural network is a computing system made of layers of connected nodes,
+loosely inspired by how neurons in a brain pass signals to one another.
+Each connection has a weight, and each node applies a small mathematical
+function to decide how strongly to pass its signal forward. Networks learn
+by adjusting these weights based on the errors they make on training data.
+
+1.2 Layers and Activation
+
+A typical network has an input layer, one or more hidden layers, and an
+output layer. Between layers, an activation function (such as ReLU or
+sigmoid) decides whether a node "fires." Without activation functions,
+stacking layers would collapse into a single linear operation, and the
+network would lose its ability to model complex patterns.
+
+1.3 Training via Backpropagation
+
+Training works by comparing the network's output to the correct answer,
+computing an error, and propagating that error backward through the
+network to adjust weights. This process is repeated over many examples
+until the network's predictions improve. The core mechanics introduced
+here (layers, weights, activation, backpropagation) will be assumed
+knowledge for the rest of this book.
+
+=================================================
+CHAPTER 2: DATABASES AND STORAGE
+=================================================
+
+2.1 What Is a Database?
+
+A database is an organized collection of data, typically stored and
+accessed electronically. Relational databases organize data into tables
+with rows and columns, while non-relational (NoSQL) databases use other
+structures like documents, key-value pairs, or graphs.
+
+2.2 Indexing for Fast Lookup
+
+Databases use indexes — auxiliary data structures like B-trees — to avoid
+scanning every row when answering a query. An index trades extra storage
+space for faster lookups, similar in spirit to a book's index page, which
+lets a reader jump directly to a topic instead of reading cover to cover.
+
+2.3 Transactions and Consistency
+
+A transaction is a group of operations that must all succeed or all fail
+together, ensuring the database never ends up in a half-updated state.
+This property, along with isolation and durability, is part of what
+database designers call ACID guarantees.
+
+=================================================
+CHAPTER 3: COMPUTER NETWORKS
+=================================================
+
+3.1 How Data Travels
+
+When two computers communicate, data is broken into packets, each
+carrying a small piece of the message along with addressing information.
+Routers examine these packets and forward them toward their destination,
+often across many intermediate hops.
+
+3.2 Protocols
+
+A protocol is an agreed-upon set of rules for how communication happens —
+for example, TCP guarantees that packets arrive in order and none are
+lost, while UDP is faster but makes no such guarantee. Choosing between
+them is a tradeoff between reliability and speed.
+
+3.3 Note on Learning Systems
+
+Some modern network routers now use adaptive traffic-shaping techniques
+that superficially resemble learning systems, adjusting routing weights
+based on observed congestion patterns. However, this is a distinct,
+simpler mechanism and should not be confused with the neural network
+weight-adjustment process. Readers should not assume the content of
+Chapter 1 applies here.
+
+=================================================
+CHAPTER 4: MODERN MACHINE LEARNING APPLICATIONS
+=================================================
+
+4.1 Recap and Extension
+
+This chapter builds directly on the fundamentals of neural networks.
+Refer to Chapter 1 for a full explanation of layers, weights, activation
+functions, and backpropagation before continuing — those mechanics are
+not repeated here.
+
+4.2 Convolutional Networks for Images
+
+Convolutional neural networks (CNNs) apply small learnable filters across
+an image to detect patterns like edges and textures. As described in
+Section 1.2, activation functions are still applied after each
+convolution to preserve the network's ability to model non-linear
+patterns.
+
+4.3 Where Trained Models Are Stored
+
+Once trained, a model's weights are often saved to a database for
+versioning and later retrieval — see Chapter 2 for how indexing makes
+looking up a specific model version efficient at scale.
+
+4.4 Serving Models Over a Network
+
+When a trained model is deployed, requests to it typically travel over a
+network, broken into packets exactly as described in Chapter 3. Model
+serving systems must choose between TCP and UDP-based protocols depending
+on whether reliability or latency matters more for the application.
+
+=================================================
+CHAPTER 5: PUTTING IT TOGETHER — A FULL SYSTEM
+=================================================
+
+5.1 System Overview
+
+A production machine learning system combines everything covered so far:
+a neural network (Chapter 1) trained on data, a database (Chapter 2) to
+store the trained weights and serve predictions, and a network layer
+(Chapter 3) to move requests and responses between the client and server.
+
+5.2 A Note on Terminology Collisions
+
+Students often confuse "network" in "neural network" (Chapter 1) with
+"network" in "computer network" (Chapter 3). These are unrelated uses of
+the same word. Similarly, "weights" in a neural network (Chapter 1) are
+unrelated to "weights" in adaptive traffic-shaping routers (Section 3.3).
+This chapter exists specifically to test whether a retrieval system can
+tell these apart by structure and reference rather than by surface-level
+word similarity.
